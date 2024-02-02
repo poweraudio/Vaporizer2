@@ -7,7 +7,7 @@ VAST Dynamics Audio Software (TM)
 
 #ifdef __aarch64__ //arm64
     #include "../../sse2neon.h"
-#else
+#elif defined JUCE_INTEL
     #if defined _MACOSX || defined JUCE_LINUX
         #include <pmmintrin.h>
         #include <cstddef>
@@ -15,6 +15,9 @@ VAST Dynamics Audio Software (TM)
         #include "../Utils/VASTSSEHelper.h"
         #include "immintrin.h"
     #endif
+#else
+    #define SIMDE_ENABLE_NATIVE_ALIASES
+    #include <simde/x86/sse3.h>
 #endif
 
 #ifdef DEBUG

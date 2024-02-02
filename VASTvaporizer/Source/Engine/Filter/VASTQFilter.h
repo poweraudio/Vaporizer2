@@ -8,8 +8,11 @@
 #include "VASTVCFCombFilter.h"
 #ifdef __aarch64__ //arm64
 	#include "../../sse2neon.h"
-#else
+#elif defined JUCE_INTEL
 	#include "emmintrin.h"
+#else
+	#define SIMDE_ENABLE_NATIVE_ALIASES
+	#include <simde/x86/sse3.h>
 #endif
 
 //not allocated structs can be global

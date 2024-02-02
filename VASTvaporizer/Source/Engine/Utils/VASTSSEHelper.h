@@ -5,8 +5,11 @@ VAST Dynamics Audio Software (TM)
 #include "../VASTEngineHeader.h"
 #ifdef __aarch64__ //arm64
 	#include "../../sse2neon.h"
-#else
+#elif defined JUCE_INTEL
 	#include "immintrin.h"
+#else
+	#define SIMDE_ENABLE_NATIVE_ALIASES
+	#include <simde/x86/sse3.h>
 #endif
 
 //http://www.juce.com/forum/topic/simple-sse-wrapper

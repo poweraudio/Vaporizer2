@@ -14,8 +14,11 @@ VAST Dynamics Audio Software (TM)
 #include <stdio.h>
 #ifdef __aarch64__ //arm64
     #include "../../sse2neon.h"
-#else
+#elif defined JUCE_INTEL
     #include "immintrin.h"
+#else
+    #define SIMDE_ENABLE_NATIVE_ALIASES
+    #include <simde/x86/sse3.h>
 #endif
 
 #define CONVEX_LIMIT 0.00398107
