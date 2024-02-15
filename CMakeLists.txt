@@ -448,6 +448,10 @@ message("-- CMAKE_CXX_FLAGS_RELEASE compiler flags are: ${CMAKE_CXX_FLAGS_RELEAS
 
 include(GNUInstallDirs)
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+  CMAKE_INSTALL_FULL_DATAROOTDIR="${CMAKE_INSTALL_FULL_DATAROOTDIR}"
+)
+
 if(TARGET ${PROJECT_NAME}_Standalone)
   install(TARGETS ${PROJECT_NAME}_Standalone DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif()
@@ -465,5 +469,6 @@ endif()
 
 foreach(data Noises Tables Presets)
   install(DIRECTORY ${CMAKE_SOURCE_DIR}/VASTvaporizer/${data} DESTINATION
-    ${CMAKE_INSTALL_DATAROOTDIR}/VASTvaporizer)
+    ${CMAKE_INSTALL_DATAROOTDIR}/Vaporizer2
+  )
 endforeach()
