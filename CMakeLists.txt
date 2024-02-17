@@ -13,6 +13,12 @@ option(BUILD_AVX "Build AVX optimized code" ON)
 option(BUILD_32 "Build for 32bit" OFF)
 option(VASTBUILD "Build compatibility version for existing licenses distributed by VAST Dynamics Software as installers" OFF)
 
+option(LV2_ONLY "Build plugin only as LV2" OFF)
+if(LV2_ONLY)
+  set(VAST_JUCE_FORMATS_OVERRIDE LV2 CACHE STRING "JUCE plugin formats")
+  set(VAST_SKIP_CLAP ON CACHE BOOL "Don't build CLAP")
+endif()
+
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
@@ -52,6 +58,10 @@ if(VST2_SDK_LOCATION)
 endif(VST2_SDK_LOCATION)
 list(APPEND PLUGIN_FORMATS VST3 AU Standalone LV2)
 
+if(VAST_JUCE_FORMATS_OVERRIDE)
+  set(PLUGIN_FORMATS ${VAST_JUCE_FORMATS_OVERRIDE})
+endif()
+
 juce_add_plugin(${PROJECT_NAME}
   VERSION ${PLUGIN_VERSION}
   BUNDLE_ID "com.vastdynamics.VAST2"
@@ -79,10 +89,12 @@ juce_add_plugin(${PROJECT_NAME}
   PLUGINHOST_AU FALSE
 )
 
-clap_juce_extensions_plugin(TARGET ${PROJECT_NAME}
-        CLAP_ID "com.vastdynamics.VAST2"
-        CLAP_FEATURES instrument
-)
+if(NOT VAST_SKIP_CLAP)
+  clap_juce_extensions_plugin(TARGET ${PROJECT_NAME}
+          CLAP_ID "com.vastdynamics.VAST2"
+          CLAP_FEATURES instrument
+  )
+endif()
 
 juce_generate_juce_header(${PROJECT_NAME})
 
