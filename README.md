@@ -1,3 +1,20 @@
+**PowerAudio fork of Vaporizer2**
+
+This fork of Vaporizer2 has the following changes:
+
+* The plugin is built with [a fork of JUCE] that includes fixes for IBM Power.
+* Additional architectures besides x86 and ARM are supported with [SIMDe].
+* Added installation rules so the plugin can be installed with
+  `cmake --install` or `make install`.
+* In the [`lv2-only`] branch, added CMake option `LV2_ONLY` to build the plugin
+  only as LV2.
+
+[a fork of JUCE]: https://github.com/poweraudio/JUCE
+[SIMDe]: https://github.com/simd-everywhere/simde
+[`lv2-only`]: https://github.com/poweraudio/Vaporizer2/tree/lv2-only
+
+---
+
 # Vaporizer2
 
 ![logo](Artwork/vaporizer2.png)
