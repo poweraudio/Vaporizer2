@@ -7,12 +7,12 @@ This fork of Vaporizer2 has the following changes:
   SIMDe must be installed separately on your system.
 * In the [`lv2-only`] branch, added CMake option `LV2_ONLY` to build the plugin
   only as LV2.
-* Fixed intermittent memory corruption errors during the build process.
 
 The following changes have since been merged upstream:
 
 * Added installation rules so the plugin can be installed with
   `cmake --install` or `make install`.
+* Fixed intermittent memory corruption errors during the build process.
 
 [a fork of JUCE]: https://github.com/poweraudio/JUCE
 [SIMDe]: https://github.com/simd-everywhere/simde
