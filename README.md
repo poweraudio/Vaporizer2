@@ -4,8 +4,10 @@ This fork of Vaporizer2 has the following changes:
 
 * The plugin is built with [a fork of JUCE] that includes fixes for IBM Power.
 * Additional architectures besides x86 and ARM are supported with [SIMDe].
+  SIMDe must be installed separately on your system.
 * In the [`lv2-only`] branch, added CMake option `LV2_ONLY` to build the plugin
   only as LV2.
+* Fixed intermittent memory corruption errors during the build process.
 
 The following changes have since been merged upstream:
 
